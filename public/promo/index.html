@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e8e6e1">
+  <meta name="description" content="CHRONO-WORKBENCH — локальная рабочая станция для глубокого фокуса. Демонстрация таймера, плана 1–3–5, звукового микшера и статистики.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <title>CHRONO-WORKBENCH — меньше шума, больше смысла</title>
+  <style>
+    :root{color-scheme:light;--case:#e8e6e1;--panel:#f4f3ef;--ink:#181818;--muted:#62615b;--line:#cfcdc6;--accent:#ff4d00;--mono:"SF Mono",Consolas,"Liberation Mono",monospace}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:radial-gradient(#b7b5ae55 .6px,transparent .6px) 0 0/5px 5px,var(--case);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}a:focus-visible{outline:3px solid var(--accent);outline-offset:5px;border-radius:3px}svg{display:block}p,h1,h2,h3{margin:0}.wrap{width:min(1180px,calc(100% - 80px));margin:auto}.skip{position:absolute;left:20px;top:-60px;z-index:5;background:var(--ink);color:var(--panel);padding:12px 20px}.skip:focus{top:16px}
+    .masthead{min-height:104px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:12px;font-size:18px;letter-spacing:-.04em;font-weight:700;text-decoration:none;white-space:nowrap}.brand-mark{display:flex;gap:3px;align-items:center;height:29px}.brand-mark i{display:block;width:7px;height:26px;background:var(--ink)}.brand-mark i:nth-child(2){height:19px}.brand-mark i:nth-child(3){height:12px;background:var(--accent)}.brand-light{font-weight:400}.brand-slash{color:var(--accent);padding:0 5px}.navigation{display:flex;align-items:center;gap:24px;font-size:14px}.text-link{text-decoration:none}.text-link:hover{text-decoration:underline;text-underline-offset:4px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 20px;border:1px solid #aaa79f;border-radius:4px;background:var(--panel);box-shadow:inset 0 1px 0 #ffffffcc,0 2px 0 #b6b3aa;text-decoration:none;font-size:14px;font-weight:600;transition:transform .12s,background .12s}.button:hover{background:#e0ddd5}.button:active{transform:translateY(2px);box-shadow:inset 0 1px 2px #0002}.button-primary{color:#fff;background:var(--accent);border-color:#c83d00;box-shadow:inset 0 1px 0 #ff9666,0 2px 0 #bc3900}.button-primary:hover{background:#e84500}
+    .hero{padding:72px 0 54px;display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:40px;align-items:end}.eyebrow{font:12px/1.6 var(--mono);letter-spacing:.12em;color:var(--muted)}.hero h1{font-size:clamp(44px,5.7vw,76px);line-height:1.02;letter-spacing:-.065em;font-weight:500;margin:20px 0 24px}.orange{color:var(--accent)}.hero-description{font-size:18px;line-height:1.65;max-width:600px;color:var(--muted)}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.instrument-label{padding:25px 0 6px;border-top:1px solid var(--line)}.instrument-label p{font:12px/1.8 var(--mono);letter-spacing:.035em;color:var(--muted)}.instrument-label strong{display:block;font:45px/1 var(--mono);letter-spacing:-.07em;margin-bottom:16px;font-weight:400}.instrument-status{display:flex;align-items:center;gap:8px;margin-top:20px;font:11px var(--mono);color:#276635;letter-spacing:.08em}.status-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#1e8e3e}
+    .video-module{padding:16px;border:1px solid #bbb8af;border-radius:8px;background:var(--panel);box-shadow:inset 0 1px 0 #ffffffd9,0 3px 0 #c4c1b9}.module-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:4px 3px 15px}.module-heading h2{font:12px/1.5 var(--mono);letter-spacing:.1em;font-weight:400}.module-heading span{font:11px/1.5 var(--mono);letter-spacing:.07em;color:var(--muted)}.video-window{border:1px solid var(--line);background:#181818;border-radius:4px;overflow:hidden;aspect-ratio:16/9}.video-window video{display:block;width:100%;height:100%;object-fit:contain}.video-caption{display:flex;align-items:flex-start;justify-content:space-between;gap:30px;padding:18px 4px 4px;color:var(--muted);font-size:14px;line-height:1.65}.video-caption p{max-width:790px}.video-caption a{flex-shrink:0;text-underline-offset:4px}
+    .features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:55px;margin-bottom:60px}.feature{border-top:1px solid var(--line);padding-top:22px}.feature-icon{width:36px;height:36px;margin-bottom:18px;color:var(--accent)}.feature h3{font-size:22px;font-weight:500;letter-spacing:-.035em;margin-bottom:12px}.feature p{font-size:16px;line-height:1.7;color:var(--muted)}.closing{display:flex;justify-content:space-between;align-items:center;gap:28px;padding:32px;border:1px solid var(--line);border-radius:6px;background:var(--panel);margin-bottom:50px}.closing h2{font-size:27px;font-weight:500;letter-spacing:-.045em;margin-bottom:10px}.closing p{font-size:15px;line-height:1.6;color:var(--muted);max-width:640px}.closing .button{flex-shrink:0}footer{border-top:1px solid var(--line);padding:26px 0 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;font:11px/1.7 var(--mono);letter-spacing:.04em;color:var(--muted)}footer a{text-underline-offset:4px}
+    @media(max-width:900px){.wrap{width:calc(100% - 44px)}.hero{grid-template-columns:minmax(0,1fr) 210px;gap:25px;padding-top:50px}.hero h1{font-size:56px}.hero-description{font-size:17px}.instrument-label strong{font-size:38px}.features{gap:22px}.feature h3{font-size:20px}.closing{padding:26px}.navigation{gap:16px}.brand{font-size:16px}}
+    @media(max-width:650px){.wrap{width:calc(100% - 30px)}.masthead{min-height:78px;gap:10px}.brand{font-size:14px;gap:8px}.brand-mark{gap:2px}.brand-mark i{width:5px}.brand-slash{padding:0 3px}.navigation>.text-link{display:none}.navigation .button{padding:9px 12px;min-height:38px;font-size:12px}.hero{display:block;padding:42px 0 32px}.hero h1{font-size:clamp(42px,10.5vw,62px);margin:17px 0 22px}.eyebrow{font-size:10px}.hero-description{font-size:16px}.hero-actions{margin-top:24px;gap:10px}.hero-actions .button{font-size:13px;padding:12px 16px}.instrument-label{display:none}.video-module{padding:9px;border-radius:6px}.module-heading{padding:4px 3px 12px}.module-heading h2{font-size:10px;letter-spacing:.06em}.module-heading span{font-size:9px}.video-caption{display:block;padding:13px 4px 6px;font-size:13px}.video-caption a{display:inline-block;margin-top:12px}.features{grid-template-columns:1fr;gap:26px;margin:35px 0}.feature{padding-top:20px}.feature-icon{float:left;margin:0 18px 0 0;width:31px;height:31px}.feature h3{font-size:22px;margin-bottom:8px}.feature p{padding-left:49px;font-size:15px}.closing{display:block;padding:24px;margin-bottom:32px}.closing h2{font-size:25px}.closing .button{margin-top:22px}.closing p{font-size:14px}footer{display:block;font-size:10px;padding:23px 0}footer a{display:inline-block;margin-top:12px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button{transition:none}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#demonstration">Перейти к видео</a>
+  <div class="wrap">
+    <header class="masthead">
+      <a class="brand" href="../" aria-label="CHRONO-WORKBENCH — открыть приложение"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>CHRONO<span class="brand-slash">/</span><span class="brand-light">WORKBENCH</span></span></a>
+      <nav class="navigation" aria-label="Навигация"><a class="text-link" href="https://github.com/Rostislav-565/chrono-workbench">Код на GitHub</a><a class="button" href="../">Открыть</a></nav>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow">PERSONAL FOCUS INSTRUMENT · CW–01</p>
+          <h1 id="hero-title">Меньше шума.<br>Больше смысла<span class="orange">.</span></h1>
+          <p class="hero-description">Один рабочий стол для внимания. Выбери главное, найди свой ритм и оставь отвлекающие мысли на потом.</p>
+          <div class="hero-actions"><a class="button button-primary" href="../">Открыть рабочий стол</a><a class="button" href="#demonstration">Посмотреть в действии</a></div>
+        </div>
+        <aside class="instrument-label" aria-label="Возможности прибора"><strong>1—3—5</strong><p>ФОКУС / ПЛАН / ВОССТАНОВЛЕНИЕ<br>DAYLIGHT LAB + NIGHT STUDIO</p><span class="instrument-status"><span class="status-dot" aria-hidden="true"></span>ДАННЫЕ В ТВОЁМ БРАУЗЕРЕ</span></aside>
+      </section>
+      <section class="video-module" id="demonstration" aria-labelledby="video-title">
+        <div class="module-heading"><h2 id="video-title">РАБОЧИЙ СТОЛ В ДЕЙСТВИИ</h2><span>CHRONO / PREVIEW</span></div>
+        <div class="video-window">
+          <video controls preload="metadata" playsinline poster="../media/chrono-workbench-poster.jpg" aria-label="Видеодемонстрация CHRONO-WORKBENCH" aria-describedby="video-description">
+            <source src="../media/chrono-workbench-promo.mp4" type="video/mp4">
+            Ваш браузер не поддерживает встроенное видео. <a href="../media/chrono-workbench-promo.mp4">Скачайте файл MP4.</a>
+          </video>
+        </div>
+        <div class="video-caption"><p id="video-description">Монтаж реальных экранов приложения с демонстрационными задачами и статистикой. Это не непрерывная запись одного сеанса. Твой рабочий стол начинает с пустого плана и заметок.</p><a href="../media/chrono-workbench-promo.mp4" download="chrono-workbench-promo.mp4">Скачать видео</a></div>
+      </section>
+      <section class="features" aria-label="Как устроен рабочий стол">
+        <article class="feature"><svg class="feature-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="16" cy="16" r="12"></circle><path d="M16 8v9l5 3M16 1v3M31 16h-3M16 31v-3M1 16h3"></path></svg><h3>Работай в своём ритме.</h3><p>Классические 25/5 или свободный Flowmodoro. Один таймер, одна активная задача, понятный момент для отдыха.</p></article>
+        <article class="feature"><svg class="feature-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="4" width="24" height="24" rx="3"></rect><path d="m8 10 2 2 4-4M17 10h6M8 18h15M8 23h11"></path></svg><h3>Начни с малого.</h3><p>План 1–3–5 удерживает границы дня. Микрошаги помогают подступиться к главному, парковка мыслей освобождает внимание.</p></article>
+        <article class="feature"><svg class="feature-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 5v22M16 5v22M26 5v22"></path><rect x="3" y="10" width="6" height="4" fill="var(--panel)"></rect><rect x="13" y="19" width="6" height="4" fill="var(--panel)"></rect><rect x="23" y="8" width="6" height="4" fill="var(--panel)"></rect></svg><h3>Оставь место для паузы.</h3><p>Настрой звуковую среду, отметь уровень энергии или сделай минутный дыхательный сброс. Продолжи, когда будешь готов.</p></article>
+      </section>
+      <section class="closing" aria-labelledby="closing-title"><div><h2 id="closing-title">Одна задача. Один момент.</h2><p>Без регистрации. Задачи и заметки сохраняются на этом устройстве; JSON-бэкап помогает забрать их с собой.</p></div><a class="button button-primary" href="../">Начать с главного</a></section>
+    </main>
+    <footer><p>CHRONO-WORKBENCH · СОБРАНО ДЛЯ ВНИМАНИЯ</p><a href="https://github.com/Rostislav-565/chrono-workbench">Исходный код и инструкция запуска</a></footer>
+  </div>
+</body>
+</html>
